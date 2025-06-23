@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdvController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\isAuthed;
+use App\Models\Advert;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,4 +15,18 @@ Route::get('/auth', [AuthController::class, 'form']);
 Route::post('/auth', [AuthController::class, 'auth']);
 Route::get('/reg', [RegistrationController::class, 'registration']);
 Route::post('/reg', [RegistrationController::class, 'createUser']);
-Route::get('/logout', [AuthController::class, 'logout']);
+Route::get('/logout', [AuthController::class, 'logout'])->middleware(isAuthed::class);
+Route::get('/adverts', [AdvController::class, 'getAdvs'])->middleware(isAuthed::class);
+Route::get('/users/{id}', [UserController::class, 'showProfile'])->middleware(isAuthed::class);
+Route::get('/employer', function () {
+    return view('employer');
+})->middleware(isAuthed::class);
+Route::get('/adverts/new', function () {
+    return view('newadv');
+})->middleware(isAuthed::class);
+
+Route::post('/adverts/new', [AdvController::class, 'newAdv'])->middleware(isAuthed::class);
+Route::get('/adverts/{id}', [AdvController::class, 'showAdv'])->middleware(isAuthed::class);
+Route::get('/freelancers', function () {
+    return view('freelancers');
+})->middleware(isAuthed::class);
