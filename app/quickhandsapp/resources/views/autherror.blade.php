@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="/">Главная</a>
     Ошибка авторизации
 </body>
 </html>

@@ -7,6 +7,7 @@
 </head>
 
 <body>
+    <a href="/">Главная</a>
     <div class="main">
         <h1>QuickHands</h1>
         <h3>Enter your login credentials</h3>

@@ -23,7 +23,6 @@ class AdvController extends Controller
         $adv->owner_id = User::where('login', $login)->first()->id;
         $adv->save();
         return view('advSuccess');
-        #редирект на успешно созданную заявку
     }
         function showAdv(string $id) {
         $adv = Advert::where('id', $id)->first();

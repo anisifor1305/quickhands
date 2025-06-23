@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdvController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FLPubController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\isAuthed;
@@ -27,6 +28,9 @@ Route::get('/adverts/new', function () {
 
 Route::post('/adverts/new', [AdvController::class, 'newAdv'])->middleware(isAuthed::class);
 Route::get('/adverts/{id}', [AdvController::class, 'showAdv'])->middleware(isAuthed::class);
-Route::get('/freelancers', function () {
-    return view('freelancers');
+Route::get('/freelancers', [FLPubController::class, 'getFLPubs'])->middleware(isAuthed::class);
+Route::get('/freelancers/new', function () {
+    return view('newFLPub');
 })->middleware(isAuthed::class);
+Route::post('/freelancers/new', [FLPubController::class, 'newFLPub'])->middleware(isAuthed::class);
+Route::get('/freelancers/{id}', [FLPubController::class, 'showFLPub'])->middleware(isAuthed::class);

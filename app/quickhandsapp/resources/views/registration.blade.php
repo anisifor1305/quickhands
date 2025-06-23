@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+        <a href="/">Главная</a>
         <div class="main">
         <h2>Registration Form</h2>
         <form action="" method='POST'>

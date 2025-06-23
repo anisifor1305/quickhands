@@ -6,6 +6,14 @@
     <title>Document</title>
 </head>
 <body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
     <a href="/">Главная</a>
     <h1>Создать объявление</h1>
     
@@ -13,7 +21,7 @@
         @csrf
         
         <!-- Название -->
-        <label for="title">Название:</label><br>
+        <label for="title">Ваша профессия или навыки</label><br>
         <input type="text" id="title" name="name" maxlength="80" required placeholder="Максимум 80 символов"><br><br>
         
         <!-- Описание -->
@@ -37,19 +45,15 @@
             <option value="tech-consulting">Консалтинг в сфере технологий</option>
             <option value="other">Другое</option>
         </select><br><br>
+        <label for="price">Минимальная цена</label><br>
+        <input type="number" id="minprice" name="minprice" min="0" step="0.01" required placeholder="Сумма в рублях"><br><br>
+        <label for="price">Максимальная цена:</label><br>
+        <input type="number" id="maxprice" name="maxprice" min="0" step="0.01" required placeholder="Сумма в рублях"><br><br>
         
-        <!-- Цена -->
-        <!-- <label for="price-type">Тип цены:</label><br>
-        <input type="radio" id="fixed-price" name="price_type" value="fixed" required>
-        <label for="fixed-price">Фиксированная сумма</label><br>
-        <input type="radio" id="hourly-rate" name="price_type" value="hourly" required>
-        <label for="hourly-rate">Почасовая ставка</label><br><br>
-         -->
-        <label for="price">Стоимость:</label><br>
-        <input type="number" id="price" name="price" min="0" step="0.01" required placeholder="Сумма в рублях"><br><br>
-        
-        <!-- Отправка -->
+
         <button type="submit">Опубликовать объявление</button>
     </form>
+</body>
+</html>
 </body>
 </html>

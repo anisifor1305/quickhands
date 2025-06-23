@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    <a href="/">Главная</a>
     <p>Страница исполнителя:</p>
      <p>ФИ: {{ $firstname}} {{$lastname}}</p>
      <p>Здесь еще ава где-то</p>

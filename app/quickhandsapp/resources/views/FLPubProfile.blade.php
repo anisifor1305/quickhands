@@ -7,10 +7,10 @@
 </head>
 <body>
     <a href="/">Главная</a>
-    Объявление:
-    <p>Разместил <a href="/users/{{ $owner_id }}">{{$owner_name}}</a> *ава*</p>
+    <p>Объявление:</p>
+    <p>Фрилансер <a href="/users/{{ $owner_id }}">{{$owner_name}} {{$owner_lastname}}</a> *ава*</p>
     <p>Название: {{ $name }}</p>
     <p>Описание: {{ $lore }}</p>
-    <p>Цена {{ $price }}</p>
+    <p>Примерная цена: {{ $minprice }}-{{ $maxprice }}</p>
 </body>
 </html>
