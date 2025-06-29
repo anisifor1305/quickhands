@@ -24,6 +24,7 @@ class User extends Authenticatable
         'firstname',
         'lastname',
         'is_admin',
+        'balance',
     ];
 
     /**

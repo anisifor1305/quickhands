@@ -6,11 +6,13 @@
     <title>Document</title>
 </head>
 <body>
+    <p>Ваш баланс: {{ $balance }}</p>
     <a href="/">Главная</a>
-    Объявление:
+    <p>Объявление:</p>
     <p>Разместил <a href="/users/{{ $owner_id }}">{{$owner_name}}</a> *ава*</p>
     <p>Название: {{ $name }}</p>
     <p>Описание: {{ $lore }}</p>
     <p>Цена {{ $price }}</p>
+    <button>Откликнуться</button>
 </body>
 </html>

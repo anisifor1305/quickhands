@@ -6,11 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    
         <!-- Заголовок -->
     <header>
         <h1>Quickhands</h1>
     </header>
+    <p>Ваш баланс: {{ $balance }}</p>
     
     <!-- Описание биржи -->
     <a href="/logout" style="text-decoration: none;">

@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    <p>Ваш баланс: {{ $balance }}</p>
     <a href="/">Главная</a>
     <p>Страница исполнителя:</p>
      <p>ФИ: {{ $firstname}} {{$lastname}}</p>

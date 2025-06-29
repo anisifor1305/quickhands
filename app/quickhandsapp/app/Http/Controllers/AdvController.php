@@ -9,7 +9,12 @@ use App\Models\User;
 
 class AdvController extends Controller
 {
+    function index(){
+        $bal = User::where('login', session('login'))->first()->balance;
+        return view('newadv', ['balance'=>$bal]);
+    }
     function newAdv(Request $request) {
+        $bal = User::where('login', session('login'))->first()->balance;
         $login = session('login');
         $name = $request->name;
         $lore = $request->lore;
@@ -22,18 +27,20 @@ class AdvController extends Controller
         $adv->lore=$lore;
         $adv->owner_id = User::where('login', $login)->first()->id;
         $adv->save();
-        return view('advSuccess');
+        return view('advSuccess', ['balance'=>$bal]);
     }
         function showAdv(string $id) {
+        $bal = User::where('login', session('login'))->first()->balance;
         $adv = Advert::where('id', $id)->first();
         $ownerId = $adv->owner_id;
         $ownerName = User::where('id', $ownerId)->first()->firstname;
-        return view('advProfile', ['name'=>$adv->name, 'lore'=>$adv->lore, 'price'=>$adv->price, 'owner_id'=>$adv->owner_id, 'type'=>$adv->type, 'owner_name'=>$ownerName]);
+        return view('advProfile', ['name'=>$adv->name, 'lore'=>$adv->lore, 'price'=>$adv->price, 'owner_id'=>$adv->owner_id, 'type'=>$adv->type, 'owner_name'=>$ownerName, 'balance'=>$bal]);
 
     }
 
     function getAdvs() {
         $advs = Advert::all();
-        return view('adverts', ['advs'=>$advs]);
+        $bal = User::where('login', session('login'))->first()->balance;
+        return view('adverts', ['advs'=>$advs, 'balance'=>$bal]);
     }
 }

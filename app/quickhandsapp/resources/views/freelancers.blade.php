@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    <p>Ваш баланс: {{ $balance }}</p>
     <a href="/">Главная</a>
     <h2>Здесь лучшие предложения от проверенных пользователей.</h2>
     @foreach ($FLPubs as $FLPub)

@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
+    <p>Ваш баланс: {{ $balance }}</p>
     <a href="/">Главная</a>
     <p>Объявление:</p>
     <p>Фрилансер <a href="/users/{{ $owner_id }}">{{$owner_name}} {{$owner_lastname}}</a> *ава*</p>

@@ -14,6 +14,7 @@
     <title>Document</title>
 </head>
 <body>
+    <p>Ваш баланс: {{ $balance }}</p>
     <a href="/">Главная</a>
     <h1>Создать объявление</h1>
     
