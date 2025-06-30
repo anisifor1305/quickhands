@@ -21,15 +21,23 @@ class FLPubController extends Controller
         $maxprice = $request->maxprice;
         $minprice = $request->minprice;
         $type = $request->type;
-        $FLPub = new FLPub();
-        $FLPub->name=$name;
-        $FLPub->type=$type;
-        $FLPub->maxprice=$maxprice;
-        $FLPub->minprice=$minprice;
-        $FLPub->lore=$lore;
-        $FLPub->owner_id = User::where('login', $login)->first()->id;
-        $FLPub->save();
-        return view('advSuccess', ['balance'=>$bal]);
+        if ( User::where('login', session('login'))->first()->count_adv<3){
+            $FLPub = new FLPub();
+            $FLPub->name=$name;
+            $FLPub->type=$type;
+            $FLPub->maxprice=$maxprice;
+            $FLPub->minprice=$minprice;
+            $FLPub->lore=$lore;
+            $FLPub->owner_id = User::where('login', $login)->first()->id;
+            $FLPub->save();
+            $user =  User::where('login', session('login'))->first();
+            $user->count_adv=$user->count_adv+1;
+            $user->save();
+            return view('advSuccess', ['balance'=>$bal]);
+        }
+        else{
+            return view('countAdvError');
+        }
     }
     function getFLPubs() {
         $bal = User::where('login', session('login'))->first()->balance;

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('lastname')->nullable();
             $table->string('passport_data')->nullable();
             $table->float('balance')->default(0.0);
+            $table->integer('count_adv')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

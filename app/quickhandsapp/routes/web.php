@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\AdvController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CPanelController;
 use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\FLPubController;
+use App\Http\Controllers\HowPageController;
 use App\Http\Controllers\MainPageController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\UserController;
@@ -28,3 +30,5 @@ Route::get('/freelancers', [FLPubController::class, 'getFLPubs'])->middleware(is
 Route::get('/freelancers/new', [FLPubController::class, 'index'])->middleware(isAuthed::class);
 Route::post('/freelancers/new', [FLPubController::class, 'newFLPub'])->middleware(isAuthed::class);
 Route::get('/freelancers/{id}', [FLPubController::class, 'showFLPub'])->middleware(isAuthed::class);
+Route::get('/cpanel', [CPanelController::class, 'index'])->middleware(isAuthed::class);
+Route::get('/howpage', [HowPageController::class, 'index'])->middleware(isAuthed::class);

@@ -14,20 +14,30 @@ class AdvController extends Controller
         return view('newadv', ['balance'=>$bal]);
     }
     function newAdv(Request $request) {
+
         $bal = User::where('login', session('login'))->first()->balance;
         $login = session('login');
         $name = $request->name;
         $lore = $request->lore;
         $price = $request->price;
         $type = $request->type;
-        $adv = new Advert();
-        $adv->name=$name;
-        $adv->type=$type;
-        $adv->price=$price;
-        $adv->lore=$lore;
-        $adv->owner_id = User::where('login', $login)->first()->id;
-        $adv->save();
-        return view('advSuccess', ['balance'=>$bal]);
+        if ( User::where('login', session('login'))->first()->count_adv<3){
+            $adv = new Advert();
+            $adv->name=$name;
+            $adv->type=$type;
+            $adv->price=$price;
+            $adv->lore=$lore;
+            $adv->owner_id = User::where('login', $login)->first()->id;
+            $adv->save();
+            $user =  User::where('login', session('login'))->first();
+            $user->count_adv=$user->count_adv+1;
+            $user->save();
+            return view('advSuccess', ['balance'=>$bal]);
+        }
+
+        else{
+            return view('countAdvError');
+        }
     }
         function showAdv(string $id) {
         $bal = User::where('login', session('login'))->first()->balance;

@@ -19,6 +19,9 @@ class AuthController extends Controller
                 session(['login'=>$request->login]);
                 return redirect('/');
             }
+            else{
+                return view('autherror');
+            }
         }
         else{
             return view('autherror');
