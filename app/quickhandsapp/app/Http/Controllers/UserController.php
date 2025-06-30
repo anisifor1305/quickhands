@@ -43,4 +43,16 @@ class UserController extends Controller
     'FLPubs'=>$user_FLPubs, 'advs'=>$user_advs]);
 
     }
+    function banUser(Request $request) {
+        $user = User::where('id', $request->userid)->first();
+        $user->banned=1;
+        $user->save();
+        return redirect('/');
+    }
+        function unbanUser(Request $request) {
+        $user = User::where('id', $request->userid)->first();
+        $user->banned=0;
+        $user->save();
+        return redirect('/');
+    }
 }

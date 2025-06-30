@@ -14,5 +14,19 @@
     <h2>Назначение прав пользователю</h2>
     <h3>Снять лимит объявлений</h3>
     <p>....</p>
+    <h1>Забанить пользователя</h1>
+    <form action="/banuser" method="post">
+        @csrf
+        <label for="userid">ID пользователя:</label><br>
+        <input type="number" id="userid" name="userid"><br><br>
+        <button type="submit">Забанить</button>
+    </form>
+    <h1>Разбанить пользователя</h1>
+    <form action="/unbanuser" method="post">
+        @csrf
+        <label for="userid">ID пользователя:</label><br>
+        <input type="number" id="userid" name="userid"><br><br>
+        <button type="submit">Разбанить</button>
+    </form>
 </body>
 </html>

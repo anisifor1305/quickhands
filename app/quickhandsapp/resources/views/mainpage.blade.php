@@ -16,7 +16,7 @@
     <a href="/logout" style="text-decoration: none;">
             Logout
     </a>
-    <p> <a href="/adverts">Предложения заказчиков</a>   <a href="/employer">Найти исполнителя</a></p>
+    <!-- <p> <a href="/adverts">Предложения заказчиков</a>   <a href="/freelancers">Найти исполнителя</a></p> -->
     <section id="description">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae ante a tellus malesuada convallis eu in est.</p>
     </section>
@@ -24,7 +24,7 @@
     <!-- Подразделения -->
     <main>
         <div class="services">
-            <a href="/employer">Я заказчик</a>
+            <a href="/freelancers">Я заказчик</a>
             <a href="/adverts">Я фрилансер</a>
         </div>
         

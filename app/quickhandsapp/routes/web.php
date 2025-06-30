@@ -9,6 +9,7 @@ use App\Http\Controllers\HowPageController;
 use App\Http\Controllers\MainPageController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\isAdmin;
 use App\Http\Middleware\isAuthed;
 use App\Models\Advert;
 use Illuminate\Support\Facades\Route;
@@ -21,7 +22,7 @@ Route::post('/reg', [RegistrationController::class, 'createUser']);
 Route::get('/logout', [AuthController::class, 'logout'])->middleware(isAuthed::class);
 Route::get('/adverts', [AdvController::class, 'getAdvs'])->middleware(isAuthed::class);
 Route::get('/users/{id}', [UserController::class, 'showProfile'])->middleware(isAuthed::class);
-Route::get('/employer', [EmployerController::class, 'index'])->middleware(isAuthed::class);
+// Route::get('/employer', [EmployerController::class, 'index'])->middleware(isAuthed::class);
 Route::get('/adverts/new', [AdvController::class, 'index'])->middleware(isAuthed::class);
 
 Route::post('/adverts/new', [AdvController::class, 'newAdv'])->middleware(isAuthed::class);
@@ -35,3 +36,5 @@ Route::get('/howpage', [HowPageController::class, 'index'])->middleware(isAuthed
 Route::get('/profile', [UserController::class, 'personalProfile'])->middleware(isAuthed::class);
 Route::get('/profile/flpubdelete/{id}', [FLPubController::class, 'deleteFLPub'])->middleware(isAuthed::class);
 Route::get('/profile/advdelete/{id}', [AdvController::class, 'deleteAdv'])->middleware(isAuthed::class);
+Route::post('/banuser', [UserController::class, 'banUser'])->middleware(isAdmin::class);
+Route::post('/unbanuser', [UserController::class, 'unbanUser'])->middleware(isAdmin::class);
