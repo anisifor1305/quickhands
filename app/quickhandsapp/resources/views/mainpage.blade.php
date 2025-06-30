@@ -11,7 +11,7 @@
         <h1>Quickhands</h1>
     </header>
     <p>Ваш баланс: {{ $balance }}</p>
-    
+    <a href="/profile">Профиль</a>
     <!-- Описание биржи -->
     <a href="/logout" style="text-decoration: none;">
             Logout

@@ -14,6 +14,9 @@
 
         <form action="" method='POST'>
             @csrf
+            @if($invalidData)
+                <p>Неверный логин или пароль</p>
+            @endif
             <label for="first">
                 Username:
             </label>

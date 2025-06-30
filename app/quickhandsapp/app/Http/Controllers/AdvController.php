@@ -53,4 +53,12 @@ class AdvController extends Controller
         $bal = User::where('login', session('login'))->first()->balance;
         return view('adverts', ['advs'=>$advs, 'balance'=>$bal]);
     }
+    function deleteAdv(string $id){
+        $adv = Advert::where('id', $id)->first();
+        $owner_id= User::where('login', session('login'))->id;
+        if ($adv->owner_id==$owner_id){
+            Advert::destroy($id);
+        }
+        return view('/profile');
+    }
 }

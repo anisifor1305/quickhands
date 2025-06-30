@@ -54,4 +54,12 @@ class FLPubController extends Controller
     'balance'=>$bal]);
 
     }
+    function deleteFLPub(string $id){
+        $adv = FLPub::where('id', $id)->first();
+        $owner_id= User::where('login', session('login'))->first()->id;
+        if ($adv->owner_id==$owner_id){
+            FLPub::destroy($id);
+        }
+        return redirect('/profile');
+    }
 }

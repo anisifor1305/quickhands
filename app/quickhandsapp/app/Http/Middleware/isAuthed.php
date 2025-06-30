@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +18,12 @@ class isAuthed
     {
         if (session('userAuth')=='true')
         {
+            $user = User::where('login', session('login'))->first();
+            if ($user->banned){
+                session()->forget('userAuth');
+                session()->forget('login');
+                return redirect('/auth');
+            }
             return $next($request);
         }
         else{

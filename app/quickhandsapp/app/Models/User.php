@@ -27,6 +27,8 @@ class User extends Authenticatable
         'balance',
         'passport_data',
         'count_adv',
+        'status',
+        'banned',
     ];
 
     /**

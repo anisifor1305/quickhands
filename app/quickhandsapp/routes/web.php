@@ -32,3 +32,6 @@ Route::post('/freelancers/new', [FLPubController::class, 'newFLPub'])->middlewar
 Route::get('/freelancers/{id}', [FLPubController::class, 'showFLPub'])->middleware(isAuthed::class);
 Route::get('/cpanel', [CPanelController::class, 'index'])->middleware(isAuthed::class);
 Route::get('/howpage', [HowPageController::class, 'index'])->middleware(isAuthed::class);
+Route::get('/profile', [UserController::class, 'personalProfile'])->middleware(isAuthed::class);
+Route::get('/profile/flpubdelete/{id}', [FLPubController::class, 'deleteFLPub'])->middleware(isAuthed::class);
+Route::get('/profile/advdelete/{id}', [AdvController::class, 'deleteAdv'])->middleware(isAuthed::class);
