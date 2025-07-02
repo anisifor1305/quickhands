@@ -10,27 +10,26 @@ use App\Models\FLPub;
 class FLPubController extends Controller
 {
     function index(){
-        $bal = User::where('login', session('login'))->first()->balance;
+        $bal =  $user = User::where('id', auth()->id())->first()->balance;
         return view('newFLPub', ['balance'=>$bal]);
     }
     function newFLPub(Request $request) {
-        $login = session('login');
-        $bal = User::where('login', session('login'))->first()->balance;
+        $bal = User::where('id', auth()->id())->first()->balance;
         $name = $request->name;
         $lore = $request->lore;
         $maxprice = $request->maxprice;
         $minprice = $request->minprice;
         $type = $request->type;
-        if ( User::where('login', session('login'))->first()->count_adv<3){
+        if ( User::where('id', auth()->id())->first()->count_adv<3){
             $FLPub = new FLPub();
             $FLPub->name=$name;
             $FLPub->type=$type;
             $FLPub->maxprice=$maxprice;
             $FLPub->minprice=$minprice;
             $FLPub->lore=$lore;
-            $FLPub->owner_id = User::where('login', $login)->first()->id;
+            $FLPub->owner_id = User::where('id', auth()->id())->first()->id;
             $FLPub->save();
-            $user =  User::where('login', session('login'))->first();
+            $user =  User::where('id', auth()->id())->first();
             $user->count_adv=$user->count_adv+1;
             $user->save();
             return view('advSuccess', ['balance'=>$bal]);
@@ -40,12 +39,12 @@ class FLPubController extends Controller
         }
     }
     function getFLPubs() {
-        $bal = User::where('login', session('login'))->first()->balance;
+        $bal =  User::where('id', auth()->id())->first()->balance;
         $FLPubs = FLPub::all();
         return view('freelancers', ['FLPubs'=>$FLPubs,'balance'=>$bal]);
     }
     function showFLPub(string $id) {
-        $bal = User::where('login', session('login'))->first()->balance;
+        $bal =  User::where('id', auth()->id())->first()->balance;
         $flpub = FLPub::where('id', $id)->first();
         $ownerId = $flpub->owner_id;
         $ownerName = User::where('id', $ownerId)->first()->firstname;

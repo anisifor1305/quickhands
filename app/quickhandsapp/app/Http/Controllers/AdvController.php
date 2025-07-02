@@ -10,26 +10,25 @@ use App\Models\User;
 class AdvController extends Controller
 {
     function index(){
-        $bal = User::where('login', session('login'))->first()->balance;
+        $bal =  User::where('id', auth()->id())->first()->balance;
         return view('newadv', ['balance'=>$bal]);
     }
     function newAdv(Request $request) {
 
-        $bal = User::where('login', session('login'))->first()->balance;
-        $login = session('login');
+        $bal = User::where('id', auth()->id())->first()->balance;
         $name = $request->name;
         $lore = $request->lore;
         $price = $request->price;
         $type = $request->type;
-        if ( User::where('login', session('login'))->first()->count_adv<3){
+        if ( User::where('id', auth()->id())->first()->count_adv<3){
             $adv = new Advert();
             $adv->name=$name;
             $adv->type=$type;
             $adv->price=$price;
             $adv->lore=$lore;
-            $adv->owner_id = User::where('login', $login)->first()->id;
+            $adv->owner_id = User::where('id', auth()->id())->first()->id;
             $adv->save();
-            $user =  User::where('login', session('login'))->first();
+            $user =  User::where('id', auth()->id())->first();
             $user->count_adv=$user->count_adv+1;
             $user->save();
             return view('advSuccess', ['balance'=>$bal]);
@@ -40,7 +39,7 @@ class AdvController extends Controller
         }
     }
         function showAdv(string $id) {
-        $bal = User::where('login', session('login'))->first()->balance;
+        $bal = User::where('id', auth()->id())->first()->balance;
         $adv = Advert::where('id', $id)->first();
         $ownerId = $adv->owner_id;
         $ownerName = User::where('id', $ownerId)->first()->firstname;
@@ -50,12 +49,12 @@ class AdvController extends Controller
 
     function getAdvs() {
         $advs = Advert::all();
-        $bal = User::where('login', session('login'))->first()->balance;
+        $bal = User::where('id', auth()->id())->first()->balance;
         return view('adverts', ['advs'=>$advs, 'balance'=>$bal]);
     }
     function deleteAdv(string $id){
         $adv = Advert::where('id', $id)->first();
-        $owner_id= User::where('login', session('login'))->id;
+        $owner_id= User::where('id', auth()->id())->first()->id;
         if ($adv->owner_id==$owner_id){
             Advert::destroy($id);
         }

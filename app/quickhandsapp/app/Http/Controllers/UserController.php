@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     function showProfile(string $id) {
         $user = User::where('id', $id)->first();
-        $bal = User::where('login', session('login'))->first()->balance;
+        $bal =  User::where('id', auth()->id())->first()->balance;
         if ($user->is_verified){
             $status = 'Верифицирован';
         }
@@ -20,12 +20,11 @@ class UserController extends Controller
             $status = 'Не верифицирован. Будьте аккуратнее.';
         }
         return view('userProfile', ['firstname'=>$user->firstname, 'lastname'=>$user->lastname, 'status'=>$status, 'about'=>$user->about,
-    'balance'=>$user->balance]);
+    'balance'=>$user->balance, 'lore'=>$user->lore]);
 
     }
     function personalProfile() {
-        $login = session('login');
-        $user = User::where('login', $login)->first();
+        $user = User::where('id', auth()->id())->first();
         $firstname = $user->firstname;
         $lastname = $user->lastname;
         $passport_data = $user->passport_data;

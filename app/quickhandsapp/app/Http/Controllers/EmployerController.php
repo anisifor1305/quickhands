@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class EmployerController extends Controller
 {
         function index(){
-        $bal = User::where('login', session('login'))->first()->balance;
+        $bal =  $user = User::where('id', auth()->id())->first()->balance;
         return view('employer', ['balance'=>$bal]);
     }
 }

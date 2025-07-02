@@ -16,18 +16,18 @@ class isAuthed
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (session('userAuth')=='true')
+        if (auth()->id())
         {
-            $user = User::where('login', session('login'))->first();
-            if ($user->banned){
+            $user = User::where('id', auth()->id())->first();
+            if ($user and $user->banned){
                 session()->forget('userAuth');
                 session()->forget('login');
-                return redirect('/auth');
+                return redirect('/login');
             }
             return $next($request);
         }
         else{
-            return redirect('/auth');
+            return redirect('/login');
         }
     }
 }

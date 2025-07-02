@@ -1,0 +1,4 @@
+npm run build / npm run dev
+php artisan queue:listen
+php artisan reverb:start
+php artisan serve

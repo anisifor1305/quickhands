@@ -9,8 +9,7 @@ use Illuminate\Http\Request;
 class CPanelController extends Controller
 {
     function index() {
-        $login = session('login');
-        if (User::where('login', $login)->first()->is_admin){
+        if (  $user = User::where('id', auth()->id())->first()->is_admin){
             return view('cpanel');
         }
         else{
