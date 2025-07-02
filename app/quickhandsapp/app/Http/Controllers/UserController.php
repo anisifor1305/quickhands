@@ -11,6 +11,9 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     function showProfile(string $id) {
+        if ($id == auth()->id()){
+            return redirect('/profile');
+        }
         $user = User::where('id', $id)->first();
         $bal =  User::where('id', auth()->id())->first()->balance;
         if ($user->is_verified){

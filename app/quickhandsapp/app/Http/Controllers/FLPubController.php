@@ -55,10 +55,12 @@ class FLPubController extends Controller
     }
     function deleteFLPub(string $id){
         $adv = FLPub::where('id', $id)->first();
-        $owner_id= User::where('login', session('login'))->first()->id;
+        $owner_id= User::where('id', auth()->id())->first()->id;
+        $user = User::where('id', auth()->id())->first();
         if ($adv->owner_id==$owner_id){
             FLPub::destroy($id);
         }
+        $user->count_adv=$user->count_adv-1;
         return redirect('/profile');
     }
 }

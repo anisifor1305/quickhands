@@ -55,9 +55,11 @@ class AdvController extends Controller
     function deleteAdv(string $id){
         $adv = Advert::where('id', $id)->first();
         $owner_id= User::where('id', auth()->id())->first()->id;
+        $user = User::where('id', auth()->id())->first();
         if ($adv->owner_id==$owner_id){
             Advert::destroy($id);
         }
-        return view('/profile');
+        $user->count_adv=$user->count_adv-1;
+        return redirect('/profile');
     }
 }

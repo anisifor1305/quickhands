@@ -14,6 +14,7 @@
     </a>
     </header>
     <p>Ваш баланс: {{ $balance }}</p>
+    <img src="{{asset('images/bfl.jpg')}}" alt="Image">
     <p>Имя: {{$firstname}}</p>
     <p>Фамилия: {{$lastname}}</p>
     @if($passport_data)
