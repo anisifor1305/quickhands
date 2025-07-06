@@ -45,6 +45,9 @@ Route::get('/profile/flpubdelete/{id}', [FLPubController::class, 'deleteFLPub'])
 Route::get('/profile/advdelete/{id}', [AdvController::class, 'deleteAdv'])->middleware(isAuthed::class);
 Route::post('/banuser', [UserController::class, 'banUser'])->middleware(isAdmin::class);
 Route::post('/unbanuser', [UserController::class, 'unbanUser'])->middleware(isAdmin::class);
+Route::get('/banned', function () {
+   return view('banned') ;
+});
 
 
 Route::get('/chat', [App\Http\Controllers\ChatController::class, 'index'])->name('chat')->middleware(isAuthed::class);

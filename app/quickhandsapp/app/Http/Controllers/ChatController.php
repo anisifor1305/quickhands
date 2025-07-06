@@ -27,7 +27,7 @@ class ChatController extends Controller
             'id', 'firstname', 'email',
         ])->first();
             session()->put('login', 'hello');
-        return view('home', [
+        return view('chat', [
             'user' => $user,
         ]);
 

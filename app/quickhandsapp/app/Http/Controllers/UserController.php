@@ -49,12 +49,12 @@ class UserController extends Controller
         $user = User::where('id', $request->userid)->first();
         $user->banned=1;
         $user->save();
-        return redirect('/');
+        return redirect('/cpanel');
     }
-        function unbanUser(Request $request) {
+    function unbanUser(Request $request) {
         $user = User::where('id', $request->userid)->first();
         $user->banned=0;
         $user->save();
-        return redirect('/');
+        return redirect('/cpanel');
     }
 }

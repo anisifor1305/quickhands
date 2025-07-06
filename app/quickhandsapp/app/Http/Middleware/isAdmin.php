@@ -6,6 +6,8 @@ use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class isAdmin
 {
@@ -16,13 +18,13 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (session('userAuth')=='true')
+        if (auth()->id())
         {
-            $user = User::where('login', session('login'))->first();
+            $user = User::where('id', auth()->id())->first();
             if ($user->banned){
-                session()->forget('userAuth');
-                session()->forget('login');
-                return redirect('/auth');
+                Session::flush();
+                Auth::logout(); 
+                return redirect('/banned');
             }
             if ($user->is_admin){
                 return $next($request);
@@ -32,8 +34,8 @@ class isAdmin
             }
         }
         else{
-            return redirect('/auth');
+            return redirect('/login');
         }
-    }
+    }   
 }
 

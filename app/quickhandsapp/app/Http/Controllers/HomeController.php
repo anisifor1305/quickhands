@@ -10,6 +10,6 @@ class HomeController extends Controller
 {
     function index(){
         $bal = User::where('id', auth()->id())->first()->balance;
-        return view('mainpage', ['balance'=>$bal]);
+        return view('home', ['balance'=>$bal]);
     }
 }
