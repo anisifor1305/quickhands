@@ -1,0 +1,1 @@
+https://stackoverflow.com/questions/47634287/laravel-5-5-render-a-react-component-in-a-blade-view-with-data-from-the-controll
