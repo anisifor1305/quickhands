@@ -34,6 +34,7 @@
                 <article class="job-listing type-webdesign" type="{{$adv->type}}">
                     <h2>{{$adv->name}}</h2>
                     <p>{{$adv->price}}</p>
+                    <a href="/replies/{{$adv->id}}">Отклики на заявку</a>
                     <a href="profile/advdelete/{{$adv->id}}">Удалить</a>
                 </article>
             </a>

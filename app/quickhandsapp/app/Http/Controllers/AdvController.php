@@ -43,7 +43,7 @@ class AdvController extends Controller
         $adv = Advert::where('id', $id)->first();
         $ownerId = $adv->owner_id;
         $ownerName = User::where('id', $ownerId)->first()->firstname;
-        return view('advProfile', ['name'=>$adv->name, 'lore'=>$adv->lore, 'price'=>$adv->price, 'owner_id'=>$adv->owner_id, 'type'=>$adv->type, 'owner_name'=>$ownerName, 'balance'=>$bal]);
+        return view('advProfile', ['id'=>$id, 'name'=>$adv->name, 'lore'=>$adv->lore, 'price'=>$adv->price, 'owner_id'=>$adv->owner_id, 'type'=>$adv->type, 'owner_name'=>$ownerName, 'balance'=>$bal]);
 
     }
 

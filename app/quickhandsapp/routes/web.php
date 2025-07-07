@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\isAdmin;
 use App\Http\Middleware\isAuthed;
@@ -40,7 +41,7 @@ Route::post('/freelancers/new', [FLPubController::class, 'newFLPub'])->middlewar
 Route::get('/freelancers/{id}', [FLPubController::class, 'showFLPub'])->middleware(isAuthed::class);
 Route::get('/cpanel', [CPanelController::class, 'index'])->middleware(isAuthed::class);
 Route::get('/howpage', [HowPageController::class, 'index'])->middleware(isAuthed::class);
-Route::get('/profile', [UserController::class, 'personalProfile'])->middleware(isAuthed::class);
+Route::get('/profile', [UserController::class, 'personalProfile'])->middleware(isAuthed::class)->name('profile');
 Route::get('/profile/flpubdelete/{id}', [FLPubController::class, 'deleteFLPub'])->middleware(isAuthed::class);
 Route::get('/profile/advdelete/{id}', [AdvController::class, 'deleteAdv'])->middleware(isAuthed::class);
 Route::post('/banuser', [UserController::class, 'banUser'])->middleware(isAdmin::class);
@@ -55,3 +56,6 @@ Route::get('/messages', [ChatController::class, 'messages'])
     ->name('messages'); //ОЧЕНЬ СТРЁМНО
 Route::post('/message', [ChatController::class, 'message'])
     ->name('message')->middleware(isAuthed::class);
+Route::get('/replies/{id}/new', [ReplyController::class, 'showReplyForm'])->middleware(isAuthed::class)->name('newreply');
+Route::post('/replies/{id}/new', [ReplyController::class, 'newReply'])->middleware(isAuthed::class);
+Route::get('/replies/{id}', [ReplyController::class, 'showReplies'])->middleware(isAuthed::class);

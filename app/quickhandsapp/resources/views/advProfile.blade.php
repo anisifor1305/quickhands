@@ -13,6 +13,6 @@
     <p>Название: {{ $name }}</p>
     <p>Описание: {{ $lore }}</p>
     <p>Цена {{ $price }}</p>
-    <button>Откликнуться</button>
+    <a href="/replies/{{$id}}/new"><button>Откликнуться</button></a>
 </body>
 </html>

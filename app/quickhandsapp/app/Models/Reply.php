@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 
-
-class Deal extends Model
+class Reply extends Model
 {
     use HasFactory, Notifiable;
 
@@ -17,10 +16,10 @@ class Deal extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'freelancer',
-        'employer',
-        'amount',
-        'status',
+        'from_user',
+        'to_adv',
+        'text',
+        'price',
 
     ];
 }
