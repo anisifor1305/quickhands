@@ -29,8 +29,23 @@ class ChatController extends Controller
 
     }
     public function chats() {
-        $messages = Message::where('from_user');
-        return view('chats');
+        $id = auth()->id();
+        $messages = Message::where('to_user', $id)
+                  ->orWhere('user_id', $id)
+                  ->get();
+        $arr = [];
+        foreach ($messages as $message) {
+            if (!in_array($message['user_id'], $arr)){
+                array_push($arr, $message["user_id"]);
+            } else if (!in_array($message['to_user'], $arr)){
+                array_push($arr, $message['to_user']);
+            }
+        }
+        $key = array_search(auth()->id(), $arr);
+        if (isset($key)){
+            unset($arr[$key]);
+        }
+        return view('chats', ['dialogs'=>$arr]);
     }
 
     public function messages(string $id): JsonResponse {

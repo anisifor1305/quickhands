@@ -7,6 +7,12 @@
 </head>
 <body>
     <h3>Чаты</h3>
-    
+    @foreach ($dialogs as $dialog)
+        <a href="/chats/{{$dialog}}" class="job-link">
+            <article class="job-listing type-webdesign">
+                <h2>{{$dialog}}</h2>
+            </article>
+        </a>
+    @endforeach
 </body>
 </html>

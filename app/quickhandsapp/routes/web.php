@@ -49,7 +49,8 @@ Route::post('/unbanuser', [UserController::class, 'unbanUser'])->middleware(isAd
 Route::get('/banned', function () {
    return view('banned') ;
 });
-Route::get('/chat/{id}', [App\Http\Controllers\ChatController::class, 'index'])->name('chat')->middleware(isAuthed::class);
+Route::get('/chats', [App\Http\Controllers\ChatController::class, 'chats'])->middleware(isAuthed::class)->name('chats');
+Route::get('/chats/{id}', [App\Http\Controllers\ChatController::class, 'index'])->middleware(isAuthed::class);
 Route::get('/messages/{id}', [ChatController::class, 'messages'])
     ->name('messages'); //ОЧЕНЬ СТРЁМНО
 Route::post('/message/{id}', [ChatController::class, 'message'])
