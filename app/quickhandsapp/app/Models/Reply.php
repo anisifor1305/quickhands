@@ -20,6 +20,7 @@ class Reply extends Model
         'to_adv',
         'text',
         'price',
+        'status',
 
     ];
 }

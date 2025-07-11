@@ -49,13 +49,12 @@ Route::post('/unbanuser', [UserController::class, 'unbanUser'])->middleware(isAd
 Route::get('/banned', function () {
    return view('banned') ;
 });
-
-
-Route::get('/chat', [App\Http\Controllers\ChatController::class, 'index'])->name('chat')->middleware(isAuthed::class);
-Route::get('/messages', [ChatController::class, 'messages'])
+Route::get('/chat/{id}', [App\Http\Controllers\ChatController::class, 'index'])->name('chat')->middleware(isAuthed::class);
+Route::get('/messages/{id}', [ChatController::class, 'messages'])
     ->name('messages'); //ОЧЕНЬ СТРЁМНО
-Route::post('/message', [ChatController::class, 'message'])
+Route::post('/message/{id}', [ChatController::class, 'message'])
     ->name('message')->middleware(isAuthed::class);
 Route::get('/replies/{id}/new', [ReplyController::class, 'showReplyForm'])->middleware(isAuthed::class)->name('newreply');
 Route::post('/replies/{id}/new', [ReplyController::class, 'newReply'])->middleware(isAuthed::class);
 Route::get('/replies/{id}', [ReplyController::class, 'showReplies'])->middleware(isAuthed::class);
+Route::get('/replies/{id}/confirm', [ReplyController::class, 'confirmReply'])->middleware(isAuthed::class);

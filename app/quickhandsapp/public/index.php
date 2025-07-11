@@ -16,7 +16,11 @@ require __DIR__.'/../vendor/autoload.php';
 // Bootstrap Laravel and handle the request...
 /** @var Application $app */
 $app = require_once __DIR__.'/../bootstrap/app.php';
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: *");
+// header("Access-Control-Allow-Headers: *");
+header("Access-Control-Allow-Origin: http://localhost:8000");
+header("Access-Control-Allow-Methods: HEAD, PUT, GET, POST, DELETE, OPTIONS");
+header("Access-Control-Allow-Credentials: true");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization, X-Socket-ID, X-CSRF-Token");
+header("Access-Control-Expose-Headers: *");
+
 $app->handleRequest(Request::capture());

@@ -15,6 +15,7 @@ window.Echo = new Echo({
     wssPort: import.meta.env.VITE_REVERB_PORT ?? 443,
     forceTLS: (import.meta.env.VITE_REVERB_SCHEME ?? 'https') === 'https',
     enabledTransports: ['ws', 'wss'],
+    
 });
 
 const ChatBox = ({ rootUrl }) => {
@@ -42,7 +43,14 @@ const ChatBox = ({ rootUrl }) => {
 
     const getMessages = async () => {
         try {
-            const m = await axios.get(`${rootUrl}/messages`);
+            const url = window.location.href;
+            const lastPart = url.split('/').pop()
+            const config = {
+                headers: {'X-CSRF-TOKEN': window.csrfToken},
+                withCredentials: true,
+            };
+            const m = await axios.get(`/messages/${lastPart}`,config);
+            console.log(m);
             setMessages(m.data);
             setTimeout(scrollToBottom, 0);
         } catch (err) {

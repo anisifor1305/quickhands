@@ -21,6 +21,7 @@ class Deal extends Model
         'employer',
         'amount',
         'status',
+        'adv'
 
     ];
 }

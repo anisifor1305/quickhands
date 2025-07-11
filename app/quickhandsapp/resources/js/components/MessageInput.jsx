@@ -3,9 +3,11 @@ import React, { useState } from "react";
 const MessageInput = ({ rootUrl }) => {
     const [message, setMessage] = useState("");
     // const csrf_token = '<?php echo csrf_token(); ?>';
+    const url = window.location.href;
+    const lastPart = url.split('/').pop()
     const messageRequest = async (text) => {
         try {
-            await axios.post(`  /message`, {
+            await axios.post(`/message/${lastPart}`, {
                 text,
             });
         } catch (err) {
@@ -42,21 +44,6 @@ const MessageInput = ({ rootUrl }) => {
         </form>
     );
         
-        // <div className="input-group">
-        //     <input onChange={(e) => setMessage(e.target.value)}
-        //            autoComplete="off"
-        //            type="text"
-        //            className="form-control"
-        //            placeholder="Message..."
-        //            value={message}
-        //     />
-        //     <div className="input-group-append">
-        //         <button onClick={(e) => sendMessage(e)}
-        //                 className="btn btn-primary"
-        //                 type="button">Send</button>
-        //     </div>
-        // </div>
-    // );
 };
 
 export default MessageInput;

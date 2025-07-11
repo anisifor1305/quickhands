@@ -10,7 +10,7 @@ return new class extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            // $table->integer('to_user');
+            $table->integer('to_user');
             $table->text('text')->nullable();
             $table->timestamps();
         });
