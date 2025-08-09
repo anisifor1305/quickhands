@@ -48,19 +48,24 @@ class ReplyController extends Controller
             $freelancer = User::where('id', $reply->from_user)->first();
             if( $employer and $freelancer){
                 if($employer->balance>=$reply->price){
-                    $reply->status=='confirmed';
-                    $reply->save();
-                    $amount = $reply->price;
-                    $employer->balance-=$amount;
-                    $employer->save();
-                    $deal = Deal::create([
-                    'freelancer' => $freelancer->id,
-                    'employer' => $employer->id,
-                    'amount' => $amount,
-                    'adv'=>$adv->id,
-                    'status'=>'created',
-                    ]);
-                    return view('replyConfirmed');
+                    if (!Deal::where('reply_id', $reply->id)->first()){
+                        $reply->status=='confirmed';
+                        $reply->save();
+                        $amount = $reply->price;
+                        $employer->balance-=$amount;
+                        $employer->save();
+                        $deal = Deal::create([
+                        'reply_id'=>$reply->id,
+                        'freelancer' => $freelancer->id,
+                        'employer' => $employer->id,
+                        'amount' => $amount,
+                        'adv'=>$adv->id,
+                        'status'=>'created',
+                        ]);
+                        return view('replyConfirmed', ['deal'=>$deal]);
+                    } else{
+                        return view('defaultError');
+                    }
                 } else{
                     return view('notEnoughBalance');
                 }

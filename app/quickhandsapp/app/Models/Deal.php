@@ -21,7 +21,8 @@ class Deal extends Model
         'employer',
         'amount',
         'status',
-        'adv'
+        'adv',
+        'reply_id',
 
     ];
 }
